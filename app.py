@@ -1,6 +1,6 @@
 import os
 import time
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, make_response
 import pandas as pd
 import matplotlib.pyplot as plt
 import gc
@@ -142,7 +142,7 @@ plot_top_five_authors(filtered_books)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    popular_books = get_popular_books(filtered_books)
+    popular_books = get_popular_books(filtered_books)  # Make sure `filtered_books` is defined
     top_ten_chart = url_for('static', filename='top_ten_books_chart.png')
     top_five_chart = url_for('static', filename='top_five_authors_chart.png')
     timestamp = int(time.time())
@@ -150,12 +150,18 @@ def index():
     if request.method == 'POST':
         book_isbn = request.form['book_isbn']
         book_title = request.form['book_title']
-        recs = recommend(book_isbn, ratings, books)
+        recs = recommend(book_isbn, ratings, books)  # Ensure `ratings` and `books` are defined
         return render_template('index.html', recs=recs.to_dict(orient='records'),
-                               popular_books=popular_books, selected_book=book_isbn, book_title=book_title)
-    return render_template('index.html', popular_books=popular_books,
-                           top_ten_chart=top_ten_chart, top_five_chart=top_five_chart, timestamp=timestamp)
+                               popular_books=popular_books, selected_book=book_isbn, book_title=book_title,
+                               top_ten_chart=top_ten_chart, top_five_chart=top_five_chart, timestamp=timestamp)
 
+    response = make_response(
+        render_template('index.html', top_ten_chart=top_ten_chart, top_five_chart=top_five_chart,
+                        popular_books=popular_books, timestamp=timestamp))
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
