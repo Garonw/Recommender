@@ -1,4 +1,4 @@
-**Lotta-Books Book Recommender**
+# Lotta-Books Book Recommender
 
 **Usage**
 
