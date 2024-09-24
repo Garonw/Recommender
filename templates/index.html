@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    body {
+        text-align: center;
+        font-family: "Century Schoolbook",sans-serif;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommender</title>
+</head>
+
+<body>
+
+<h1 style="text-align: left; color:darkslateblue; margin: 45px">
+    <em style="color:orangered; font-family: 'Book Antiqua', sans-serif; font-size: xxx-large">Lotta-Books</em>
+    Book Recommender</h1>
+<hr>
+
+<form method="POST" style="display: none;">
+    <label for="book_isbn"></label>
+    <input type="text" id="book_isbn" name="book_isbn" required>
+    <label for="book_title"></label>
+    <input type="text" id="book_title" name="book_title" required>
+</form>
+
+<h1 style="color:darkslateblue;">Select a book you like from these popular books to get a recommendation</h1>
+
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+    {% for pop in popular_books %}
+
+    <section>
+
+        <a href="#" style="color: inherit; text-decoration: none;"
+           onclick="document.getElementById('book_isbn').value='{{ pop[3] }}';
+                    document.getElementById('book_title').value='{{ pop[0] }}'; document.forms[0].submit();">
+
+            <strong>{{ pop[0] }}</strong>
+        </a><br>
+        <em>by {{ pop[1] }}</em><br>
+
+        <a href="#" style="color: inherit; text-decoration: none;"
+           onclick="document.getElementById('book_isbn').value='{{ pop[3] }}';
+                    document.getElementById('book_title').value='{{ pop[0] }}'; document.forms[0].submit();">
+            <img src="{{ pop[2] }}" alt="Book Image" style="height: 250px; background: lightblue;">
+        </a>
+
+    </section>
+
+    {% endfor %}
+
+</div>
+
+<p style=" font-size: medium; vertical-align: top; margin-bottom: 100px;">Don't like these books?
+    <a href="#" style="color: inherit; text-decoration: underline;" onclick="location.reload();">Click Here</a>
+</p>
+
+{% if recs %}
+<hr>
+
+<h2>Recommended Books</h2>
+<h1 style="color:darkslateblue;">Readers who liked
+    <em style="color:orangered;"> {{book_title}} </em>
+    also liked these books:
+</h1>
+
+{% endif %}
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-bottom: 100px;">
+    {% if recs %}
+
+    {% for row in recs %}
+    <div style="text-align: center; margin: 5px;">
+        <strong>{{ row['Book-Title'] }}</strong><br>
+        <em>by {{ row['Book-Author'] }}</em><br>
+        <img src="{{ row['Image-URL-L'] }}" alt="Book Image" style="height: 250px; background: blue;">
+    </div>
+    {% endfor %}
+
+    {% endif %}
+</div>
+<div style="margin-bottom: 100px;">
+    <img src="{{ top_ten_chart }}" alt="Top Ten Chart" style="width: 75%; align-content: center">
+    <img src="{{ top_five_chart }}" alt="Top Five Chart" style="width: 75%; align-content: center">
+</div>
+</body>
+</html>
