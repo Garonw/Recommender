@@ -1,16 +1,18 @@
 # Lotta-Books Book Recommender
 
-**Usage**
+This webapp is used recommend books and show dynamically updated highest ratings charts.
 
-Load Data: The function load_data() loads book and rating data from csv files.
+To use this webapp:
 
-Preprocess Data: The function preprocess_data() preprocesses the loaded data, handling missing values, and other necessary cleaning steps.
+- Click a popular book that you have enjoyed.
 
-Process Books and Ratings: The function process_books_and_ratings() processes and merges book and rating data, preparing them for further analysis.
+- If you do not see one that you have read or enjoyed, you may click below the book images, where it says "Don't like these books? Click Here".
 
-Recommendation: The function recommend() generates book recommendations based on the processed data.
+- This will get more popular books to choose from.
 
-Popular Books: The function get_popular_books() fetches a list of the most popular books.
+- Once you have selected a book, the recommended books will appear below.
+
+- You may also keep engaging with the popular books to generate new recommendations.
 
 
 **Visualization:**
@@ -26,4 +28,4 @@ Web Interface: Flask web interface to display recommended books and visualizatio
 
 The webapp is hosted on Adaptable.io
 
-Visit: https://lotta-books-recommend.adaptable.app/
+Visit https://lotta-books-recommend.adaptable.app/
