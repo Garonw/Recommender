@@ -88,7 +88,6 @@ def get_popular_books(rats_per_book):
             temp_df['Image-URL-L'].values[0],
             temp_df['ISBN'].values[0],
         ])
-
     gc.collect()
 
     return rand_pop_books
