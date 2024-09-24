@@ -100,7 +100,7 @@ def plot_top_ten_books(books_with_ratings):
 
     plt.figure(figsize=(12, 5))
     plt.subplots_adjust(left=0.4, bottom=0.25)
-    plt.barh(top_ten_books['Book-Title'], top_ten_books['average_rating'], color='skyblue')
+    plt.barh(top_ten_books['Book-Title'], top_ten_books['average_rating'], color='darkslateblue')
     plt.xlabel('Average Rating', fontsize=14)
     plt.yticks(fontsize=12)  # Enable wrapping of labels to show the full title
     plt.title('Top 10 Highest Rated Books', fontsize=16)
@@ -120,7 +120,7 @@ def plot_top_five_authors(books_with_ratings):
 
     plt.figure(figsize=(12, 5))
     plt.subplots_adjust(left=0.4, bottom=0.25)
-    plt.barh(top_five_authors['Book-Author'], top_five_authors['avg_rating'], color='skyblue')
+    plt.barh(top_five_authors['Book-Author'], top_five_authors['avg_rating'], color='darkslateblue')
     plt.xlabel('Combined Average Rating', fontsize=14)
     plt.yticks(fontsize=12)
     plt.title('Top 5 Highest Rated Authors', fontsize=16)
