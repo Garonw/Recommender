@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<meta http-equiv="content-type" content="no-cache">
+
 <html lang="en">
 
 <style>
@@ -83,8 +85,8 @@
     {% endif %}
 </div>
 <div style="margin-bottom: 100px;">
-    <img src="{{ top_ten_chart }}" alt="Top Ten Chart" style="width: 75%; align-content: center">
-    <img src="{{ top_five_chart }}" alt="Top Five Chart" style="width: 75%; align-content: center">
+    <img src="{{ top_ten_chart }}?v={{ timestamp }}" alt="Top Ten Chart" style="width: 75%; align-content: center">
+    <img src="{{ top_five_chart }}?v={{ timestamp }}" alt="Top Five Chart" style="width: 75%; align-content: center">
 </div>
 </body>
 </html>

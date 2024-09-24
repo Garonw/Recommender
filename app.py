@@ -1,4 +1,5 @@
 import os
+import time
 from flask import Flask, render_template, request, url_for
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -144,6 +145,7 @@ def index():
     popular_books = get_popular_books(filtered_books)
     top_ten_chart = url_for('static', filename='top_ten_books_chart.png')
     top_five_chart = url_for('static', filename='top_five_authors_chart.png')
+    timestamp = int(time.time())
 
     if request.method == 'POST':
         book_isbn = request.form['book_isbn']
@@ -152,7 +154,7 @@ def index():
         return render_template('index.html', recs=recs.to_dict(orient='records'),
                                popular_books=popular_books, selected_book=book_isbn, book_title=book_title)
     return render_template('index.html', popular_books=popular_books,
-                           top_ten_chart=top_ten_chart, top_five_chart=top_five_chart)
+                           top_ten_chart=top_ten_chart, top_five_chart=top_five_chart, timestamp=timestamp)
 
 
 if __name__ == '__main__':
